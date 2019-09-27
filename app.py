@@ -1,4 +1,9 @@
 from flask import Flask, render_template
+from pymongo import MongoClient
+
+client = MongoClient() # assigning Mongo Connector Class an instance.
+db = client.Playlister #? what is the Playlists
+playlists = db.playlists #? what does .playlists do?
 
 app = Flask(__name__)
 
