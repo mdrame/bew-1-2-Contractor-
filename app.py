@@ -1,28 +1,27 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-from werkzeug.exceptions import NotFound
-import os
+
 
 client = MongoClient() # assigning Mongo Connector Class an instance.
-db = client.Playlister #? what is the Playlists
-playlists = db.playlists #? what does .playlists do?
+db = client.Playlister # client. is creating a database.
+playlists = db.playlists #? creating a collection with in Playlister database 
 
 app = Flask(__name__)
 
 # OUR MOCK ARRAY OF PROJECTS
-playlists = [
-    { 'title': 'Cat Videos', 'description': 'Cats acting weird' },
-    { 'title': '80\'s Music', 'description': 'Don\'t stop believing!' }
-]
+# mock_playlist = [
+#     { 'title': 'Cat Videos', 'description': 'Cats acting weird' },
+#     { 'title': '80\'s Music', 'description': 'Don\'t stop believing!' }
+# ]
 
 
 # dash bord / home route
 @app.route('/')
-def index():
+def playlists_index():
 
 
-    return render_template("playlists_index.html", playlists=playlists)
+    return render_template("playlists_index.html", playlists=playlists.find())
 
 
 # create new documents route
@@ -39,10 +38,11 @@ def playlists_submit():
     playlist = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'videos': request.form.get('videos').split()
-    }
+        'videos': request.form.get('videos').split(),
+        'stars': request.form.get('stars')
+        }
     playlists.insert_one(playlist)
-    return redirect(url_for('playlists_index'))
+    return redirect(url_for('playlists_index')) # url_for looks for a func name instead of an actual route
 
 
 if __name__ == "__main__":
