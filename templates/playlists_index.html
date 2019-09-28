@@ -11,7 +11,9 @@
 
     {% for playlist in playlists %}
 
-        <h2>{{ playlist.title }}</h2>
-        <small>{{ playlist.description }}</small>
+        <h2><a href='/playlists/{{playlist._id}}'>'{{ playlist.title }}</a></h2>
+        <small>{{ playlist.description }}<br></small>
+        <small>{{ playlist.videos }} <br> </small>
+        <small>{{ playlist.stars }}<br></small>
     {% endfor %}
 {% endblock %}

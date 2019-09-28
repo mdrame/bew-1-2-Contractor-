@@ -4,8 +4,8 @@ from bson.objectid import ObjectId
 
 
 client = MongoClient() # assigning Mongo Connector Class an instance.
-db = client.Playlister # client. is creating a database.
-playlists = db.playlists #? creating a collection with in Playlister database 
+db = client.Playlister # client. is creating a database or using an existing database .
+playlists = db.playlists #? creating a collection with in Playlister database
 
 app = Flask(__name__)
 
@@ -24,14 +24,14 @@ def playlists_index():
     return render_template("playlists_index.html", playlists=playlists.find())
 
 
-# create new documents route
+# create new documents route ( take you to a html from site)
 @app.route('/playlists/new')
 def playlists_new():
 
     return render_template('playlists_new.html')
 
 
-# diret user to view playlist ( in playlist_new there is a creat new ps link)
+# create playlist and diret user to index page.
 @app.route('/playlists', methods=['POST'])
 def playlists_submit():
     """Submit a new playlist."""
@@ -43,6 +43,15 @@ def playlists_submit():
         }
     playlists.insert_one(playlist)
     return redirect(url_for('playlists_index')) # url_for looks for a func name instead of an actual route
+
+# showing individual collection by adding _id in parameter.
+@app.route('/playlists/<playlist_id>')
+def playlists_show(playlist_id):
+
+    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
+    return render_template('playlists_show.html', playlist=playlist)
+    
+
 
 
 if __name__ == "__main__":
