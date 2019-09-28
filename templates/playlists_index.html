@@ -1,9 +1,16 @@
 <!-- templates/playlists_index.html -->
 {% extends 'base.html' %}
 
+<!-- page is liking to creating a new playlist and also showing the reult saved playlist -->
+
 {% block content %}
     <h1>Playlists</h1>
+
+    <!-- sending user to new html page link -->
+    <a href='/playlists/new'> New Playlist</a>
+
     {% for playlist in playlists %}
+
         <h2>{{ playlist.title }}</h2>
         <small>{{ playlist.description }}</small>
     {% endfor %}

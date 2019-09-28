@@ -1,0 +1,36 @@
+
+<!-- post in resource seems to mean send this to a destination  -->
+<!-- the from action is leading to a read playlist page meaning it show us every playlist  -->
+<!-- templates/playlists_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/playlists'>
+    <fieldset>
+        <legend>New Playlist</legend>
+        <!-- TITLE -->
+        <p>
+            <label for='playlist-title'>Title</label><br>
+            <input id='playlist-title' type='text' name='title' />
+        </p>
+
+        <!-- DESCRIPTION -->
+        <p>
+            <label for='description'>Description</label><br>
+            <input id='description' type='text' name='description' />
+        </p>
+
+        <!-- VIDEO LINKS -->
+        <p>
+            <label for='playlist-videos'>Videos</label><br>
+            <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
+            <textarea id='playlist-videos' name='videos' rows='10'></textarea>
+        </p>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save Playlist</button>
+    </p>
+</form>
+{% endblock %}
