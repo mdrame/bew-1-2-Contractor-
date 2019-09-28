@@ -41,8 +41,8 @@ def playlists_submit():
         'videos': request.form.get('videos').split(),
         'stars': request.form.get('stars')
         }
-    playlists.insert_one(playlist)
-    return redirect(url_for('playlists_index')) # url_for looks for a func name instead of an actual route
+    playlist_id = playlists.insert_one(playlist).inserted_id
+    return redirect(url_for('playlists_index', playlist_id=playlist_id)) # url_for looks for a func name instead of an actual route
 
 # showing individual collection by adding _id in parameter.
 @app.route('/playlists/<playlist_id>')
@@ -50,7 +50,7 @@ def playlists_show(playlist_id):
 
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     return render_template('playlists_show.html', playlist=playlist)
-    
+
 
 
 
