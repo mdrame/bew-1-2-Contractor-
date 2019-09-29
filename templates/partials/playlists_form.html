@@ -1,46 +1,51 @@
 
-    <fieldset>
-        <legend>Edit Playlist</legend>
-        <!-- TITLE -->
-        <p>
-            <label for='playlist-title'>Title</label><br>
-            <input id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
-        </p>
+<!-- templates/partials/playlists_form.html -->
 
-        <!-- DESCRIPTION -->
-        <p>
-            <label for='description'>Description</label><br>
-            <input id='description' type='text' name='description' value='{{ playlist.description }}' />
-        </p>
-
-        <!-- VIDEO LINKS -->
-        <p>
-            <label for='playlist-videos'>Videos</label><br>
-            <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
-            <textarea id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
-        </p>
-
-        <label for='playlist-rating'> Rate : </label><br>
-
-        <select name='stars'>
-            <option value="⭐️">⭐️</option>
-                <br>
-            <option value="⭐️⭐️"> ⭐️ ⭐️ </option>
-                <br>
-            <option value="⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ </option>
-                <br>
-            <option value="⭐️⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ ⭐️ </option>
-                <br>
-            <option value="⭐️⭐️⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ </option>
-        </select>
-
-
-
-
-    </fieldset>
-
-    <!-- BUTTON -->
+<fieldset>
+    <legend> {{ title }} </legend>
+    <!-- TITLE -->
     <p>
-        <button type='submit'>Save Playlist</button>
+        <label for='playlist-title'>Title</label><br>
+        <input id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
     </p>
-</form>
+
+    <!-- DESCRIPTION -->
+    <p>
+        <label for='description'>Description</label><br>
+        <input id='description' type='text' name='description' value='{{ playlist.description }}' />
+    </p>
+
+    <!-- VIDEO LINKS -->
+    <p>
+        <label for='playlist-videos'>Videos</label><br>
+        <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
+        <textarea id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
+    </p>
+
+    <label for='playlist-rating'> Rate : </label><br>
+
+    <select name='stars'>
+        <option value="⭐️">⭐️</option>
+            <br>
+        <option value="⭐️⭐️"> ⭐️ ⭐️ </option>
+            <br>
+        <option value="⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ </option>
+            <br>
+        <option value="⭐️⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ ⭐️ </option>
+            <br>
+        <option value="⭐️⭐️⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ </option>
+    </select>
+
+
+
+
+</fieldset>
+
+<!-- BUTTON -->
+<p>
+    <button type='submit'>Save Playlist</button>
+</p>
+
+<p>
+    <a href='/'> Cancel </a>
+</p>

@@ -27,14 +27,21 @@ def playlists_index():
 # create new documents route ( take you to a html from site)
 @app.route('/playlists/new')
 def playlists_new():
+    """Create a new playlist."""
+    return render_template('playlists_new.html', playlist={}, title='New Playlist')
 
-    return render_template('playlists_new.html', playlist={}, title='New playlist')
+@app.route('/playlists/<playlist_id>/edit')
+def playlists_edit(playlist_id):
+    """Show the edit form for a playlist."""
+    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
+    return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist')
 
 
 # create playlist and diret user to index page.
 @app.route('/playlists', methods=['POST'])
 def playlists_submit():
     """Submit a new playlist."""
+    playlist = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
         'videos': request.form.get('videos').split()
@@ -51,24 +58,19 @@ def playlists_show(playlist_id):
     return render_template('playlists_show.html', playlist=playlist)
 
 
-@app.route('/Playlists/<playlist_id>/edit')
-def playlists_edit(playlist_id):
 
-    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
-    return render_template('playlists_edit.html', playlist=playlist, title="Edit Playlist")
 
 @app.route('/playlists/<playlist_id>', methods=['POST'])
 def playlists_update(playlist_id):
-
-    update_playlist = {
-                        'title': request.form.get('title'),
-                        'description': request.form.get('description'),
-                        'videos': request.form.get('videos').split(),
-                        'stars': request.form.get('stars')
+    """Submit an edited playlist."""
+    updated_playlist = {
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
+        'videos': request.form.get('videos').split()
     }
-
-    playlists.update_one(   {'_id': ObjectId(playlist_id)},
-                            {'$set': updated_playlist})
+    playlists.update_one(
+        {'_id': ObjectId(playlist_id)},
+        {'$set': updated_playlist})
     return redirect(url_for('playlists_show', playlist_id=playlist_id))
 
 
