@@ -4,24 +4,25 @@
 <fieldset>
     <legend> {{ title }} </legend>
     <!-- TITLE -->
-    <p>
+    <div class='form-group'> 
         <label for='playlist-title'>Title</label><br>
         <input id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
-    </p>
+    </div>
 
     <!-- DESCRIPTION -->
-    <p>
+    <div class='form-group'> 
         <label for='description'>Description</label><br>
         <input id='description' type='text' name='description' value='{{ playlist.description }}' />
-    </p>
+    </div>
 
     <!-- VIDEO LINKS -->
-    <p>
+    <div class='form-group'> 
         <label for='playlist-videos'>Videos</label><br>
         <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
         <textarea id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
-    </p>
+    </div>
 
+    <div class='form-group'> 
     <label for='playlist-rating'> Rate : </label><br>
 
     <select name='stars'>
@@ -35,6 +36,7 @@
             <br>
         <option value="⭐️⭐️⭐️⭐️⭐️"> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ </option>
     </select>
+    </div>
 
 
 

@@ -37,7 +37,7 @@ class PlaylistsTests(TestCase):
         self.assertEqual(result.status, '200 OK')
         self.assertIn(b'New Playlist', result.data)
 
-     @mock.patch('pymongo.collection.Collection.find_one')
+    @mock.patch('pymongo.collection.Collection.find_one')
     def test_edit_playlist(self, mock_find):
         """Test editing a single playlist."""
         mock_find.return_value = sample_playlist
