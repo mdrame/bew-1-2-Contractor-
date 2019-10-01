@@ -8,6 +8,10 @@
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
         <h1>{{ playlist.title }}</h1>
+        {% if playlist.created_at %}
+            <p class='text-muted'>Created on {{ playlist.created_at.strftime('%A, %d %B, %Y') }}
+                at {{ playlist.created_at.strftime('%I:%M %p') }}</p>
+        {% endif %}
         <h2>{{ playlist.description }}</h2>
         {% for video in playlist.videos %}
             <div class="card"><div class="card-body">
