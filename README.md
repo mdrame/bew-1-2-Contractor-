@@ -1,6 +1,6 @@
 # playlister 
 
-## What I learn doing this project:
+## Technology:
 
 * Flask ( Serveral )
 * Setting up Virtual Enviroment 
